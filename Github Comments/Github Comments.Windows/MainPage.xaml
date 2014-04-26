@@ -8,6 +8,46 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+        <StackPanel Margin="100">
+            <TextBlock FontSize="80" TextWrapping="WrapWholeWords" Margin="12.48">GitHub Comments</TextBlock>
+            <TextBlock FontSize="28" Margin="12" Text="Your Comments"/>
+            <ListView x:Name="CommentsView" ItemsSource="{Binding CommentModels}" BorderBrush="Transparent" 
+                      HorizontalContentAlignment="Stretch">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Margin="4">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <SymbolIcon Grid.Column="0" VerticalAlignment="Top" Margin="6 0" Symbol="Comment"/>
+                            <Grid Grid.Column="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Row="0" Grid.ColumnSpan="3" FontSize="11" Text="{Binding Date}" />
+                                <TextBlock Grid.Row="1" Grid.Column="0" FontSize="14">
+                                    <Hyperlink NavigateUri="{Binding UserUri}">
+                                        <Run Text="{Binding User}"></Run>
+                                    </Hyperlink>
+                                </TextBlock>
+                                <TextBlock Grid.Row="1" Grid.Column="1" FontSize="14" Text="&#160;commented on commit&#160;" />
+                                <TextBlock Grid.Row="1" Grid.Column="2" FontSize="14">
+                                    <Hyperlink NavigateUri="{Binding CommentUri}">
+                                        <Run Text="{Binding Commit}"></Run>
+                                    </Hyperlink>
+                                </TextBlock>
+                            </Grid>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackPanel>
     </Grid>
 </Page>
